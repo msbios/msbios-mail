@@ -1,13 +1,50 @@
 {
     "name": "msbios/mail",
+    "description": "MSBios Mail Module",
+    "license": "MIT",
+    "keywords": [
+        "php"
+    ],
+    "homepage": "https://github.com/msbios/msbios-mail",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Judzhin Miles",
             "email": "info@msbios.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "MSBios\\Mail\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MSBiosTest\\Mail\\": "test/"
+        }
+    },
     "require": {
         "zendframework/zend-mail": "^2.10",
-        "zendframework/zend-servicemanager": "^3.3"
+        "zendframework/zend-servicemanager": "^3.3",
+        "zendframework/zend-router": "^3.2",
+        "msbios/msbios": "^1.0",
+        "msbios/test": "^1.0",
+        "msbios/debug": "^1.0"
+    },
+    "scripts": {
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "test": [
+            "@cs-check",
+            "phpunit --colors=always"
+        ],
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
+        "upload-coverage": "coveralls -v",
+        "commit": "git add . && git commit -a -m \"Lazy Composer Commiter\" && git push"
+    },
+    "extra": {
+        "zf": {
+            "component": "MSBios\\Mail"
+        }
     }
 }
