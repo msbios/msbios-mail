@@ -24,7 +24,9 @@
         }
     },
     "require": {
-        "zendframework/zend-mail": "^2.10",
+        "zendframework/zend-mail": "^2.10"
+    },
+    "require-dev": {
         "zendframework/zend-servicemanager": "^3.3",
         "zendframework/zend-router": "^3.2",
         "msbios/msbios": "^1.0",
