@@ -11,10 +11,14 @@ use Zend\Mail\Transport\Smtp;
 return [
     'service_manager' => [
         'factories' => [
+            'HtmlPart' =>
+                Factory\HtmlPartFactory::class,
             Module::class =>
                 ModuleFactory::class,
             Message::class =>
                 Factory\MessageFactory::class,
+            'MimeMessage' =>
+                Factory\MimeMessageFactory::class,
 
             // transport
             Smtp::class =>

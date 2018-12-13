@@ -39,9 +39,16 @@ if (file_exists(__DIR__ . '/../config/development.config.php')) {
 // Run the application!
 $application = Application::init($appConfig);
 
+// /** @var \MSBios\Mail\Message $message */
+// $message = $application->getServiceManager()->get(\MSBios\Mail\Message::class);
+// $message
+//     ->addTo('judzhin@gns-it.com')
+//     ->setBody('Hello World')
+//     ->send();
+
 /** @var \MSBios\Mail\Message $message */
-$message = $application->getServiceManager()->get(\MSBios\Mail\Message::class);
+$message = $application->getServiceManager()->get('MimeMessage');
 $message
     ->addTo('judzhin@gns-it.com')
-    ->setBody('Hello World')
+    // ->setBody('Hello World')
     ->send();
