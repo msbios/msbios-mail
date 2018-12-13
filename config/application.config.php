@@ -8,7 +8,30 @@
 return [
     // Retrieve list of modules used in this application.
     'modules' => [
+        'Zend\Cache',
+        'Zend\Serializer',
+        'Zend\I18n',
+        'Zend\Mvc\Plugin\FilePrg',
+        'Zend\Form',
+        'Zend\Hydrator',
+        'Zend\InputFilter',
+        'Zend\Filter',
+        'Zend\Mvc\Plugin\FlashMessenger',
+        'Zend\Mvc\Plugin\Identity',
+        'Zend\Mvc\Plugin\Prg',
+        'Zend\Session',
         'Zend\Router',
+        'Zend\Validator',
+        'Zend\Navigation',
+
+        'MSBios\Cache',
+        'MSBios\View',
+        'MSBios\Theme',
+        'MSBios\Widget',
+        'MSBios\Navigation',
+        'MSBios\Application',
+        'MSBios\Assetic',
+
         'MSBios\Mail'
     ],
     // These are various options for the listeners attached to the ModuleManager

@@ -21,7 +21,7 @@ if (php_sapi_name() === 'cli-server') {
 // Composer autoloading
 include __DIR__ . '/../vendor/autoload.php';
 
-if (!class_exists(Application::class)) {
+if (! class_exists(Application::class)) {
     throw new RuntimeException(
         "Unable to load application.\n"
         . "- Type `composer install` if you are developing locally.\n"
@@ -47,7 +47,12 @@ $message
 // ->send();
 
 /** @var \MSBios\Mail\Message $message */
-$mime = $serviceManager->get('MimeMessage');
+$mime = $serviceManager->build('MimeMessage', [
+    'variables' => [
+        'content' => 'This is a really simple email template. Its sole purpose is to get the recipient to click the button with no distractions.',
+        'footer' => 'Good luck! Hope it works.'
+    ]
+]);
 $message
     ->setBody($mime)
     ->send();

@@ -7,9 +7,12 @@ namespace MSBios\Mail\Factory;
 
 use Interop\Container\ContainerInterface;
 use MSBios\Mail\Module;
+use MSBios\View\Renderer\PhpRenderer;
 use Zend\Mime\Mime;
 use Zend\Mime\Part;
 use Zend\ServiceManager\Factory\FactoryInterface;
+use Zend\View\Model\ModelInterface;
+use Zend\View\Model\ViewModel;
 
 /**
  * Class HtmlPartFactory
@@ -27,13 +30,22 @@ class HtmlPartFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-
         /** @var array $defaultOptions */
         $defaultOptions = $container->build(Module::class, $options);
 
-        // TODO: need make PhpRender
-        /** @var string $htmlMarkup */
-        $htmlMarkup = file_get_contents($defaultOptions['template']);
+        if ($container->has('ViewRenderer')) {
+            /** @var ModelInterface $viewModel */
+            $viewModel = new ViewModel($defaultOptions['variables']);
+            $viewModel->setTemplate($defaultOptions['template']);
+
+            /** @var PhpRenderer $renderer */
+            $renderer = $container->get('ViewRenderer');
+
+            /** @var string $htmlMarkup */
+            $htmlMarkup = $renderer->render($viewModel);
+        } else {
+            $htmlMarkup = "HTML Example";
+        }
 
         /** @var Part $part */
         $part = new Part($htmlMarkup);

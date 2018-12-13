@@ -155,9 +155,18 @@ return [
         /**
          * Template.
          *
+         * Expects: string
+         */
+        'template' => 'mail/example',
+
+        /**
+         * Variables.
+         *
          * Expects: array
          */
-        'template' => __DIR__ . '/../template.phtml'
+        'variables' => [
+            // ...
+        ]
     ],
 
 ];
