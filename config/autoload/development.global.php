@@ -6,7 +6,7 @@
 return [
     'view_manager' => [
         'template_map' => [
-            'mail/example' => __DIR__ . '/../../data/example.phtml',
+            'mail_template_example' => __DIR__ . '/../../view/example.phtml',
         ],
     ],
 ];

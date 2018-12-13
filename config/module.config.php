@@ -157,7 +157,7 @@ return [
          *
          * Expects: string
          */
-        'template' => 'mail/example',
+        'template' => 'mail_template_example',
 
         /**
          * Variables.
