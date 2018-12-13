@@ -27,18 +27,13 @@ class MimeMessageFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /** @var Message $message */
-        $message = $container->build(Message::class, $options);
-
         /** @var HtmlPart $htmlPart */
-        $htmlPart = $container->get('HtmlPart');
+        $htmlPart = $container->build('HtmlPart', $options);
 
         /** @var MimeMessage $body */
         $body = new MimeMessage;
         $body->addPart($htmlPart);
 
-        $message->setBody($body);
-
-        return $message;
+        return $body;
     }
 }

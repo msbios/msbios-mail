@@ -150,7 +150,14 @@ return [
                  */
                 'ssl' => 'tls',
             ]
-        ]
+        ],
+
+        /**
+         * Template.
+         *
+         * Expects: array
+         */
+        'template' => __DIR__ . '/../template.phtml'
     ],
 
 ];

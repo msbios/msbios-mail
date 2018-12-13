@@ -21,7 +21,7 @@ if (php_sapi_name() === 'cli-server') {
 // Composer autoloading
 include __DIR__ . '/../vendor/autoload.php';
 
-if (! class_exists(Application::class)) {
+if (!class_exists(Application::class)) {
     throw new RuntimeException(
         "Unable to load application.\n"
         . "- Type `composer install` if you are developing locally.\n"
@@ -37,18 +37,17 @@ if (file_exists(__DIR__ . '/../config/development.config.php')) {
 }
 
 // Run the application!
-$application = Application::init($appConfig);
-
-// /** @var \MSBios\Mail\Message $message */
-// $message = $application->getServiceManager()->get(\MSBios\Mail\Message::class);
-// $message
-//     ->addTo('judzhin@gns-it.com')
-//     ->setBody('Hello World')
-//     ->send();
+$serviceManager = Application::init($appConfig)->getServiceManager();
 
 /** @var \MSBios\Mail\Message $message */
-$message = $application->getServiceManager()->get('MimeMessage');
+$message = $serviceManager->get(\MSBios\Mail\Message::class);
 $message
-    ->addTo('judzhin@gns-it.com')
-    // ->setBody('Hello World')
+    ->addTo('judzhin@gns-it.com');
+// ->setBody('Hello World')
+// ->send();
+
+/** @var \MSBios\Mail\Message $message */
+$mime = $serviceManager->get('MimeMessage');
+$message
+    ->setBody($mime)
     ->send();
