@@ -32,37 +32,39 @@ if (!class_exists(Message::class)) {
     );
 }
 
-/** @var string $htmlMarkup */
-$htmlMarkup = file_get_contents(__DIR__ . '/template.phtml');
-
-/** @var \Zend\Mime\Part $html */
-// $html = new MimePart($htmlMarkup);
-$html = new MimePart($htmlMarkup);
-$html->type = Mime::TYPE_HTML;
-$html->charset = 'utf-8';
-$html->encoding = Mime::ENCODING_QUOTEDPRINTABLE;
-$html->disposition = Mime::DISPOSITION_INLINE;
-
-/** @var \Zend\Mime\Message $body */
-$body = new MimeMessage;
-$body->addPart($html);
+///** @var string $htmlMarkup */
+//$htmlMarkup = file_get_contents(__DIR__ . '/template.phtml');
+//
+///** @var \Zend\Mime\Part $html */
+//// $html = new MimePart($htmlMarkup);
+//$html = new MimePart($htmlMarkup);
+//$html->type = Mime::TYPE_HTML;
+//$html->charset = 'utf-8';
+//$html->encoding = Mime::ENCODING_QUOTEDPRINTABLE;
+//$html->disposition = Mime::DISPOSITION_INLINE;
+//
+///** @var \Zend\Mime\Message $body */
+//$body = new MimeMessage;
+//$body->addPart($html);
 
 /** @var Message $message */
 $message = new Message;
 $message
-    ->setBody($body)
-    ->setFrom('info@gmail.com', 'Test User')
-    ->setTo('judzhin@gns-it.com', "Judzhin Miles")
-    ->setSubject('inf');
+    // ->setBody($body)
+    ->setBody("Хватит спамить, сейчас всех забаним.")
+    ->setFrom('bot@gns-it.com', 'GNS-IT Bot')
+    // ->addTo('itea@itea.ua')
+    ->addTo('all@gns-it.com')
+    ->setSubject('inf - Congratulations!');
 
 /** @var \Zend\Mail\Transport\TransportInterface $transport */
 $transport = new SmtpTransport();
 
 /** @var \Zend\Stdlib\ParameterObjectInterface $options */
 $options = new SmtpOptions([
-    'name' => 'gmail.com',
-    'host' => 'smtp.gmail.com',
-    'port' => 587,
+    'name' => 'gns-it.com',
+    'host' => 'mail.gns-it.com',
+    'port' => 25,
     'connection_class' => 'login',
     'connection_config' => [
         'username' => '',
